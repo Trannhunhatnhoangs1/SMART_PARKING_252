@@ -7,5 +7,9 @@
 
   Run `npm i` to install the dependencies.
 
+  npm install vite
+
+  npm install lucide_react
+
   Run `npm run dev` to start the development server.
   
