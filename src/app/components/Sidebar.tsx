@@ -9,7 +9,7 @@ export function Sidebar() {
     { icon: Home, label: 'Dashboard', path: '/dashboard' },
     { icon: ParkingSquare, label: 'Tình trạng', path: '/dashboard/parking' },
     { icon: Clock, label: 'Lịch sử', path: '/dashboard/history' },
-    { icon: CreditCard, label: 'Thanh toán', path: '/dashboard/payment' },
+  //  { icon: CreditCard, label: 'Thanh toán', path: '/dashboard/payment' },
     { icon: User, label: 'Hồ sơ', path: '/dashboard/profile' },
   ];
 

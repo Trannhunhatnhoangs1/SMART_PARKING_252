@@ -172,7 +172,7 @@ export function Login() {
                   }`}
                 >
                   <UserCircle className="w-5 h-5" />
-                  <span className="text-xs font-medium">Khách</span>
+                  <span className="text-xs font-medium">Nhân viên</span>
                 </button>
               </div>
 
@@ -191,7 +191,7 @@ export function Login() {
                   )}
                   {accountType === 'guest' && (
                     <>
-                      <span className="font-medium text-blue-700">Khách:</span> Dành cho khách mời và người dùng bên ngoài
+                      <span className="font-medium text-blue-700">Nhân viên:</span> Dành cho nhân viên bãi xe
                     </>
                   )}
                 </p>

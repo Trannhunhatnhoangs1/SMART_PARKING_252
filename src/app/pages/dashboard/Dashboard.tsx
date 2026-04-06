@@ -5,7 +5,7 @@ import { Car, Calendar, CreditCard, ArrowRight, Clock, CheckCircle2 } from 'luci
 export function Dashboard() {
   const accountRole = localStorage.getItem('accountRole') || 'student';
   const isLecturer = accountRole === 'lecturer';
-
+  const [walletBalance, setWalletBalance] = useState(20000);
   const [parkingData, setParkingData] = useState({
     available: 120,
     total: 200,
@@ -40,78 +40,125 @@ export function Dashboard() {
   const maxCount = Math.max(...loginFrequency.map(d => d.count));
 
   return (
-    <div className="p-6">
-      {/* Welcome Message */}
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-1">Dashboard</h1>
-        <p className="text-gray-600">Chào mừng trở lại! Đây là tổng quan bãi đậu xe của bạn.</p>
-      </div>
+  <div className="p-6">
+    {/* Welcome Message */}
+    <div className="mb-6">
+      <h1 className="text-2xl font-bold text-gray-900 mb-1">Dashboard</h1>
+      <p className="text-gray-600">
+        Chào mừng trở lại! Đây là tổng quan bãi đậu xe của bạn.
+      </p>
+    </div>
 
-      <div className="grid lg:grid-cols-3 gap-6 mb-6">
-        {/* Available Slots Card */}
-        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-          <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-              <Car className="w-6 h-6 text-green-600" />
-            </div>
-            <div>
-              <div className="text-sm text-gray-600">Chỗ còn trống</div>
-              <div className="text-2xl font-bold text-gray-900">{parkingData.available} / {parkingData.total}</div>
+    {/* Wallet mini (đặt ngoài grid) */}
+    <div className="flex justify-end mb-4">
+      <div className="flex items-center gap-2 px-3 py-1 bg-yellow-50 border border-yellow-200 rounded-full text-xs shadow-sm">
+        <CreditCard className="w-3 h-3 text-yellow-600" />
+
+        <span className="text-gray-600">Ví:</span>
+
+        <span className="font-semibold text-gray-900">
+          {walletBalance.toLocaleString()}đ
+        </span>
+
+        <button className="ml-2 px-2 py-0.5 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors">
+          Nạp thêm
+        </button>
+      </div>
+    </div>
+
+    {/* Main cards (CHỈ 1 grid) */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+
+      {/* Available Slots Card */}
+      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+            <Car className="w-6 h-6 text-green-600" />
+          </div>
+          <div>
+            <div className="text-sm text-gray-600">Chỗ còn trống</div>
+            <div className="text-2xl font-bold text-gray-900">
+              {parkingData.available} / {parkingData.total}
             </div>
           </div>
-          <div className="text-sm text-gray-600">{parkingData.percentage}% còn trống</div>
+        </div>
+        <div className="text-sm text-gray-600">
+          {parkingData.percentage}% còn trống
+        </div>
+      </div>
+
+      {/* Monthly Plan Card */}
+      <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+            <CreditCard className="w-6 h-6 text-blue-600" />
+          </div>
+          <div>
+            <div className="text-sm text-gray-600">Gói tháng</div>
+            <div className="text-2xl font-bold text-gray-900">
+              Còn hiệu lực
+            </div>
+          </div>
         </div>
 
-        {/* Monthly Plan Card */}
-        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+        <div className="flex items-center justify-between text-sm text-gray-600">
+          <span>
+            {isLecturer 
+              ? 'Cung cấp bởi trường' 
+              : 'Đến 30/04/2026'}
+          </span>
+
+          <button className="px-3 py-1 text-xs bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            Gia hạn
+          </button>
+        </div>
+      </div>
+
+      {/* Lecturer / Student Card */}
+      {isLecturer ? (
+        <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl shadow-sm p-6 border border-purple-200">
           <div className="flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-              <CreditCard className="w-6 h-6 text-blue-600" />
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+              <CheckCircle2 className="w-6 h-6 text-purple-600" />
             </div>
             <div>
-              <div className="text-sm text-gray-600">Gói tháng</div>
+              <div className="text-sm text-gray-600">Giới hạn truy cập</div>
+              <div className="text-2xl font-bold text-purple-600">
+                15 / 50
+              </div>
+            </div>
+          </div>
+
+          <div className="text-sm text-purple-600 mb-2">đã sử dụng</div>
+
+          <div className="w-full bg-purple-200 rounded-full h-2">
+            <div
+              className="bg-purple-600 h-2 rounded-full"
+              style={{ width: '30%' }}
+            ></div>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+              <Calendar className="w-6 h-6 text-orange-600" />
+            </div>
+            <div>
+              <div className="text-sm text-gray-600">Trạng thái</div>
               <div className="text-2xl font-bold text-gray-900">
-                {isLecturer ? '0 VND' : '50,000 VND'}
+                Chưa đậu xe
               </div>
             </div>
           </div>
+
           <div className="text-sm text-gray-600">
-            {isLecturer ? '(Cung cấp bởi trường)' : 'Có hiệu lực đến 30/04/2026'}
+            Không có phiên hoạt động
           </div>
         </div>
+      )}
 
-        {/* Lecturer Access Limit OR Student Status */}
-        {isLecturer ? (
-          <div className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl shadow-sm p-6 border border-purple-200">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
-                <CheckCircle2 className="w-6 h-6 text-purple-600" />
-              </div>
-              <div>
-                <div className="text-sm text-gray-600">Giới hạn truy cập</div>
-                <div className="text-2xl font-bold text-purple-600">15 / 50</div>
-              </div>
-            </div>
-            <div className="text-sm text-purple-600 mb-2">đã sử dụng</div>
-            <div className="w-full bg-purple-200 rounded-full h-2">
-              <div className="bg-purple-600 h-2 rounded-full" style={{ width: '30%' }}></div>
-            </div>
-          </div>
-        ) : (
-          <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
-                <Calendar className="w-6 h-6 text-orange-600" />
-              </div>
-              <div>
-                <div className="text-sm text-gray-600">Trạng thái</div>
-                <div className="text-2xl font-bold text-gray-900">Chưa đậu xe</div>
-              </div>
-            </div>
-            <div className="text-sm text-gray-600">Không có phiên hoạt động</div>
-          </div>
-        )}
-      </div>
+    </div>
 
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Parking Map */}
@@ -218,18 +265,6 @@ export function Dashboard() {
                 <ArrowRight className="w-5 h-5 text-gray-400" />
               </Link>
               
-              <Link
-                to="/dashboard/payment"
-                className="flex items-center justify-between p-3 hover:bg-gray-50 rounded-lg transition-colors"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
-                    <CreditCard className="w-5 h-5 text-green-600" />
-                  </div>
-                  <span className="font-medium text-gray-900">Thanh toán tháng</span>
-                </div>
-                <ArrowRight className="w-5 h-5 text-gray-400" />
-              </Link>
             </div>
           </div>
         </div>
@@ -254,16 +289,6 @@ export function Dashboard() {
             <div className="text-sm text-gray-600">Hôm nay</div>
           </div>
           
-          <div className="flex items-center justify-between py-3 border-b border-gray-100">
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
-              <div>
-                <div className="font-medium text-gray-900">Thanh toán</div>
-                <div className="text-sm text-gray-600">Hoàn thành: 50,000 VND</div>
-              </div>
-            </div>
-            <div className="text-sm text-gray-600">01/04</div>
-          </div>
           
           <div className="flex items-center justify-between py-3">
             <div className="flex items-center gap-3">

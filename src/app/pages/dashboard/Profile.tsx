@@ -103,16 +103,16 @@ export function Profile() {
               </div>
                {!isLecturer && (
                 <div>
-                  <label className="text-sm text-gray-700">Mã thẻ</label>
+                  <label className="text-sm text-gray-700">Mã thẻ (ID SV)</label>
                   <div className="p-3 bg-gray-50 rounded-lg">
-                    8686868
+                    2311234
                   </div>
                 </div>
               )}
 
               {isLecturer && (
                 <div>
-                  <label className="text-sm text-gray-700">Mã thẻ</label>
+                  <label className="text-sm text-gray-700">Mã thẻ (ID GV)</label>
                   <div className="flex justify-between p-3 bg-gray-50 rounded-lg">
                     <span>5823538</span>
                     <Edit className="w-4 h-4 text-blue-600" />

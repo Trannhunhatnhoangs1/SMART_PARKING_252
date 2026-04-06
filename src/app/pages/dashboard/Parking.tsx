@@ -135,7 +135,7 @@ export function Parking() {
           </div>
         </div>
 
-        {/* Slot Detail Panel */}
+        {/* Slot Detail Panel
         <div className="space-y-6">
           {selectedSlotData && (
             <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
@@ -160,11 +160,6 @@ export function Parking() {
                 </button>
               )}
 
-              {selectedSlotData.status === 'yours' && (
-                <button className="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition-colors font-medium">
-                  Kết thúc phiên
-                </button>
-              )}
 
               {selectedSlotData.status === 'full' && (
                 <button disabled className="w-full bg-gray-300 text-gray-600 py-3 rounded-lg cursor-not-allowed font-medium">
@@ -172,7 +167,7 @@ export function Parking() {
                 </button>
               )}
             </div>
-          )}
+          )} */}
 
           {/* Legend */}
           <div className="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
@@ -203,6 +198,6 @@ export function Parking() {
           </div>
         </div>
       </div>
-    </div>
+   // </div>
   );
 }

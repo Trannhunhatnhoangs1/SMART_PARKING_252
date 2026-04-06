@@ -8,6 +8,7 @@ interface HistoryEntry {
   slot: string;
   duration: string;
   fee: string;
+  cardType: string; 
   status: 'active' | 'paid';
 }
 
@@ -23,6 +24,7 @@ export function MyHistory() {
       timeOut: '-',
       slot: 'A04',
       duration: '-',
+      cardType: 'Thẻ tháng', 
       fee: '-',
       status: 'active',
     },
@@ -32,6 +34,7 @@ export function MyHistory() {
       timeOut: '05:15 PM',
       slot: 'A04',
       duration: '9h 5m',
+      cardType: 'Thẻ tháng', 
       fee: '-',
       status: 'active',
     },
@@ -41,6 +44,7 @@ export function MyHistory() {
       timeOut: '04:30 PM',
       slot: 'B07',
       duration: '8h 45m',
+      cardType: 'Thẻ tháng', 
       fee: '-',
       status: 'active',
     },
@@ -50,6 +54,7 @@ export function MyHistory() {
       timeOut: '05:00 PM',
       slot: 'C02',
       duration: '8h 40m',
+      cardType: 'Thẻ tháng', 
       fee: '-',
       status: 'active',
     },
@@ -59,6 +64,7 @@ export function MyHistory() {
       timeOut: '12:00 PM',
       slot: 'A10',
       duration: '3h 55m',
+      cardType: 'Thẻ tháng', 
       fee: '-',
       status: 'active',
     },
@@ -68,6 +74,7 @@ export function MyHistory() {
       timeOut: '06:30 PM',
       slot: 'D05',
       duration: '9h 30m',
+      cardType: 'Thẻ tháng', 
       fee: '-',
       status: 'active',
     },
@@ -77,6 +84,7 @@ export function MyHistory() {
       timeOut: '04:00 PM',
       slot: 'B03',
       duration: '8h 30m',
+      cardType: 'Thẻ tháng', 
       fee: '-',
       status: 'active',
     },
@@ -86,6 +94,7 @@ export function MyHistory() {
       timeOut: '05:45 PM',
       slot: 'A07',
       duration: '9h 30m',
+      cardType: 'Thẻ tháng', 
       fee: '-',
       status: 'active',
     },
@@ -125,6 +134,7 @@ export function MyHistory() {
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Giờ ra</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Chỗ</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Thời gian</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Loại thẻ</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Phí</th>
                 <th className="px-6 py-4 text-left text-sm font-semibold text-gray-900">Trạng thái</th>
               </tr>
@@ -137,6 +147,7 @@ export function MyHistory() {
                   <td className="px-6 py-4 text-sm text-gray-900">{entry.timeOut}</td>
                   <td className="px-6 py-4 text-sm text-gray-900">{entry.slot}</td>
                   <td className="px-6 py-4 text-sm text-gray-900">{entry.duration}</td>
+                  <td className="px-6 py-4 text-sm text-gray-900">{entry.cardType}</td>
                   <td className="px-6 py-4 text-sm text-gray-900">{entry.fee}</td>
                   <td className="px-6 py-4">
                     <span className="inline-flex px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-700">
